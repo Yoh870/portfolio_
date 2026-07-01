@@ -11,7 +11,7 @@ import type { Variants, Transition } from "framer-motion";
  * Module constants are the same reference everywhere.
  */
 
-export const easeOutExpo: Transition["ease"] = [0.16, 1, 0.3, 1];
+export const easeOutExpo = [0.16, 1, 0.3, 1] as const;
 
 export const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
