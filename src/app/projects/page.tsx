@@ -1,1 +1,3 @@
-export default function ProjectsPage() { return null; } 
+export default function ProjectsPage() {
+  return null;
+}

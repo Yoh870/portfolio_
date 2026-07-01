@@ -1,1 +1,3 @@
-export default function SlugPage() { return null; } 
+export default function SlugPage() {
+  return null;
+}
