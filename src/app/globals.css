@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: "Inter", sans-serif;
+  --font-space-grotesk: "Space Grotesk", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Use hardware-scrolling on iOS for smoother momentum */
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  background-color: #09090b;
+  color: #f4f4f5;
+  /**
+   * Prevent layout shift from scrollbar appearing/disappearing
+   * on pages whose content changes height (e.g. mobile menu open).
+   */
+  scrollbar-gutter: stable;
+}
+
+::selection {
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #09090b; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#3b82f6, #8b5cf6);
+  border-radius: 10px;
+}
+
+/* ── Focus ring ────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Reduced motion ────────────────────────────────────── */
+/*
+ * Disables ALL animations and transitions site-wide so the
+ * individual component-level checks (useRef + matchMedia) act as a
+ * belt-and-suspenders second layer, but this CSS layer is the one
+ * the browser can apply without any JS at all.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Utility: visually hidden but in the tab order ─────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
