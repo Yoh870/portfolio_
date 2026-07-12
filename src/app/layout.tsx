@@ -31,7 +31,10 @@ export const metadata: Metadata = {
   title: "Yoh — Full Stack Web Developer",
   description:
     "Full Stack Web Developer building web applications and information systems that solve real-world problems.",
-  keywords: [
+  icons: {
+    icon: "/favicon.svg",
+  },
+    keywords: [
     "Full Stack Developer",
     "Web Developer",
     "React",
@@ -58,11 +61,6 @@ export const metadata: Metadata = {
       "Building web applications and information systems that solve real-world problems.",
   },
   robots: { index: true, follow: true },
-
-  icons: {
-  icon: "/favicon.svg",
-},
-
 };
 
 export const viewport: Viewport = {

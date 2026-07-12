@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { MagneticButton } from "@/components/effects/MagneticButton";
 import { TIMELINE } from "@/data/timeline";
 import { cn } from "@/lib/utils";
-
+import Image from "next/image";
 /**
  * POLISH:
  * - Location tag added beneath the bio — grounding/professional detail
@@ -36,6 +36,24 @@ export function About() {
         <div className="grid gap-16 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
           {/* Bio column */}
           <ScrollReveal delay={0.05}>
+            
+            {/* Profile photo */}
+            <div className="mb-8 flex items-center gap-5">
+              <div className="relative h-20 w-20 overflow-hidden rounded-2xl border border-border">
+                <Image
+                  src="/images/profile.jpg"
+                  alt="Yoh — Full Stack Web Developer"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+              </div>
+              <div>
+                <p className="font-display text-lg font-bold text-white">Yoh</p>
+                <p className="text-sm text-muted">Full Stack Web Developer</p>
+              </div>
+            </div>
+
             {/* Location chip */}
             <span className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-border bg-white/[0.03] px-3 py-1 text-xs text-muted">
               <MapPin size={11} aria-hidden="true" className="text-accent" />
