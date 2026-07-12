@@ -58,6 +58,11 @@ export const metadata: Metadata = {
       "Building web applications and information systems that solve real-world problems.",
   },
   robots: { index: true, follow: true },
+
+  icons: {
+  icon: "/favicon.svg",
+},
+
 };
 
 export const viewport: Viewport = {
@@ -80,3 +85,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
