@@ -75,7 +75,7 @@ export function Hero() {
       aria-labelledby="hero-heading"
       className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-6 pb-20 pt-32 sm:px-10 lg:px-16"
     >
-      <AnimatedBackground />
+     
       <Spotlight />
       <Particles />
 

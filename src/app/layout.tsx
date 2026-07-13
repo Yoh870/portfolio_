@@ -3,7 +3,7 @@ import { Inter, Manrope, Space_Grotesk } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
-
+import { AnimatedBackground } from "@/components/effects/AnimatedBackground";
 /**
  * Fonts loaded with next/font/google:
  * - display:swap eliminates invisible text during load (FOIT → FOUT).
@@ -77,6 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="bg-background font-sans text-white antialiased">
         <Navbar />
+        <AnimatedBackground />
         {children}
         <Footer />
       </body>
