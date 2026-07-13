@@ -4,7 +4,6 @@ import { motion, useSpring, useTransform, motionValue } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { FolderOpen, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { AnimatedBackground } from "@/components/effects/AnimatedBackground";
 import { Spotlight } from "@/components/effects/Spotlight";
 import { Particles } from "@/components/effects/Particles";
 import { TypingText } from "@/components/effects/TypingText";
@@ -75,7 +74,6 @@ export function Hero() {
       aria-labelledby="hero-heading"
       className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-6 pb-20 pt-32 sm:px-10 lg:px-16"
     >
-     
       <Spotlight />
       <Particles />
 
