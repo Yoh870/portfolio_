@@ -34,6 +34,6 @@ export const FEATURED_PROJECT: FeaturedProjectContent = {
   lessonsLearned:
     "Shipping on constrained shared hosting taught me to debug methodically against real environment limits, and to design data flows — like tracking IDs — that stay reliable without depending on server-side state.",
   techStack: ["PHP", "MySQL", "Tailwind CSS", "JavaScript", "InfinityFree"],
-  liveUrl: "https://pbmci.infinityfreeapp.com/landing.php?i=1",
-  githubUrl: "https://github.com/Yoh870",
+  liveUrl: "#",
+  githubUrl: "https://pbmci.infinityfreeapp.com/landing.php?i=1",
 };
