@@ -6,7 +6,7 @@ import type { ContactLink } from "@/types";
  * hand-maintained sets of the same links.
  */
 export const CONTACT_LINKS: ContactLink[] = [
-  { id: "email", label: "Email", href: "mailto:mariojimenezgangan@gmail.com", icon: "email" },
+  { id: "email", label: "Email", href: "https://mail.google.com/mail/?view=cm&to=mariojimenezgangan@gmail.com", icon: "email" },
   { id: "phone", label: "Call / SMS", href: "tel:+639562352439", icon: "phone" },
   { id: "github", label: "GitHub", href: "https://github.com/Yoh870", icon: "github" },
   {
