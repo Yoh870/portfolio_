@@ -39,12 +39,13 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable} ${spaceGrotesk.variable}`}>
-      <body className="bg-background font-sans text-white antialiased">
-        {/* Full-page parallax background — fixed, behind everything */}
+      <body className="relative isolate bg-background font-sans text-white antialiased">
         <AnimatedBackground />
-        <Navbar />
-        {children}
-        <Footer />
+        <div className="relative z-10">
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

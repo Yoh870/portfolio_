@@ -2,6 +2,25 @@
 
 import { useParallax } from "@/hooks/useParallax";
 
+const AMBIENT_PARTICLES = [
+  { left: 9, top: 14, size: 2, color: "#3B82F6", depth: 0.55 },
+  { left: 18, top: 7, size: 2, color: "#8B5CF6", depth: 0.3 },
+  { left: 31, top: 27, size: 1.5, color: "#10B981", depth: 0.7 },
+  { left: 46, top: 12, size: 1.5, color: "#3B82F6", depth: 0.4 },
+  { left: 66, top: 21, size: 2, color: "#8B5CF6", depth: 0.6 },
+  { left: 84, top: 10, size: 1.5, color: "#10B981", depth: 0.35 },
+  { left: 93, top: 31, size: 2, color: "#3B82F6", depth: 0.75 },
+  { left: 14, top: 57, size: 1.5, color: "#8B5CF6", depth: 0.45 },
+  { left: 38, top: 66, size: 2, color: "#3B82F6", depth: 0.65 },
+  { left: 57, top: 52, size: 1.5, color: "#10B981", depth: 0.3 },
+  { left: 73, top: 75, size: 2, color: "#8B5CF6", depth: 0.55 },
+  { left: 91, top: 63, size: 1.5, color: "#3B82F6", depth: 0.4 },
+  { left: 7, top: 88, size: 1.5, color: "#10B981", depth: 0.6 },
+  { left: 26, top: 93, size: 2, color: "#8B5CF6", depth: 0.35 },
+  { left: 52, top: 86, size: 1.5, color: "#3B82F6", depth: 0.7 },
+  { left: 82, top: 92, size: 2, color: "#10B981", depth: 0.45 },
+] as const;
+
 /**
  * Full-page ambient backdrop.
  * 
@@ -38,15 +57,16 @@ export function AnimatedBackground() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
     >
       {/* Radial gradient wash */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at 20% 20%, rgba(59,130,246,0.16), transparent 45%)," +
-            "radial-gradient(circle at 80% 70%, rgba(139,92,246,0.16), transparent 45%)",
+            "radial-gradient(circle at 20% 20%, rgba(59,130,246,0.18), transparent 45%)," +
+            "radial-gradient(circle at 80% 70%, rgba(139,92,246,0.18), transparent 45%)," +
+            "linear-gradient(135deg, rgba(7,15,31,0.86), rgba(9,9,11,0.94) 56%, rgba(28,18,53,0.8))",
         }}
       />
 
@@ -65,6 +85,31 @@ export function AnimatedBackground() {
             "radial-gradient(ellipse 100% 100% at 50% 0%, #000 30%, transparent 100%)",
         }}
       />
+
+      <div className="absolute inset-0">
+        {AMBIENT_PARTICLES.map((particle, index) => {
+          const x = mouseX * 28 * particle.depth;
+          const y = mouseY * 20 * particle.depth - scrollY * 0.018 * particle.depth;
+
+          return (
+            <span
+              key={index}
+              className="absolute rounded-full"
+              style={{
+                left: `${particle.left}%`,
+                top: `${particle.top}%`,
+                width: particle.size,
+                height: particle.size,
+                backgroundColor: particle.color,
+                boxShadow: `0 0 ${particle.size * 4}px ${particle.color}`,
+                opacity: 0.42,
+                transform: `translate3d(${x}px, ${y}px, 0)`,
+                transition: "transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)",
+              }}
+            />
+          );
+        })}
+      </div>
 
       {/* Blob 1 — blue, top-left */}
       <div
