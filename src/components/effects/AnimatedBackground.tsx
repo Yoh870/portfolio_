@@ -1,146 +1,74 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { useParallax } from "@/hooks/useParallax";
 
-const AMBIENT_PARTICLES = [
-  { left: 9, top: 14, size: 2, color: "#3B82F6", depth: 0.55 },
-  { left: 18, top: 7, size: 2, color: "#8B5CF6", depth: 0.3 },
-  { left: 31, top: 27, size: 1.5, color: "#10B981", depth: 0.7 },
-  { left: 46, top: 12, size: 1.5, color: "#3B82F6", depth: 0.4 },
-  { left: 66, top: 21, size: 2, color: "#8B5CF6", depth: 0.6 },
-  { left: 84, top: 10, size: 1.5, color: "#10B981", depth: 0.35 },
-  { left: 93, top: 31, size: 2, color: "#3B82F6", depth: 0.75 },
-  { left: 14, top: 57, size: 1.5, color: "#8B5CF6", depth: 0.45 },
-  { left: 38, top: 66, size: 2, color: "#3B82F6", depth: 0.65 },
-  { left: 57, top: 52, size: 1.5, color: "#10B981", depth: 0.3 },
-  { left: 73, top: 75, size: 2, color: "#8B5CF6", depth: 0.55 },
-  { left: 91, top: 63, size: 1.5, color: "#3B82F6", depth: 0.4 },
-  { left: 7, top: 88, size: 1.5, color: "#10B981", depth: 0.6 },
-  { left: 26, top: 93, size: 2, color: "#8B5CF6", depth: 0.35 },
-  { left: 52, top: 86, size: 1.5, color: "#3B82F6", depth: 0.7 },
-  { left: 82, top: 92, size: 2, color: "#10B981", depth: 0.45 },
-] as const;
+function lerp(a: number, b: number, t: number) {
+  return a + (b - a) * Math.min(1, Math.max(0, t));
+}
+function lerpColor(c1: number[], c2: number[], t: number): string {
+  const r = Math.round(lerp(c1[0], c2[0], t));
+  const g = Math.round(lerp(c1[1], c2[1], t));
+  const b = Math.round(lerp(c1[2], c2[2], t));
+  return `rgb(${r},${g},${b})`;
+}
 
-/**
- * Full-page ambient backdrop.
- * 
- * Moved from Hero section to layout.tsx so the parallax effect
- * persists across ALL sections as the user scrolls down the page.
- *
- * PARALLAX:
- * - Blobs drift at different speeds on scroll creating depth
- * - Mouse movement pushes blobs in opposite directions
- * - Grid subtly shifts on scroll for added depth
- *
- * position:fixed so it stays behind everything on the page.
- * z-index:-10 so all content sits above it.
- * aria-hidden — purely decorative.
- */
+const COLORS = {
+  bgTop:       [9,   9,   11],
+  bgMid:       [8,   20,  40],
+  bgBottom:    [4,   28,  48],
+  blob1Top:    [59,  130, 246],
+  blob1Bottom: [6,   182, 212],
+  blob2Top:    [139, 92,  246],
+  blob2Bottom: [20,  184, 166],
+  blob3Top:    [16,  185, 129],
+  blob3Bottom: [8,   145, 178],
+};
+
 export function AnimatedBackground() {
   const { scrollY, mouseX, mouseY } = useParallax();
+  const blob1Ref = useRef<HTMLDivElement>(null);
+  const blob2Ref = useRef<HTMLDivElement>(null);
+  const blob3Ref = useRef<HTMLDivElement>(null);
+  const gridRef  = useRef<HTMLDivElement>(null);
+  const bgRef    = useRef<HTMLDivElement>(null);
 
-  // Blob 1 — blue, top-left, follows cursor
-  const blob1X = mouseX * 120;
-  const blob1Y = mouseY * 100 - scrollY * 0.12;
-
-  // Blob 2 — purple, bottom-right, moves away from cursor
-  const blob2X = -mouseX * 100;
-  const blob2Y = -mouseY * 80 - scrollY * 0.06;
-
-  // Blob 3 — green, center-right, subtle drift
-  const blob3X = mouseX * 60;
-  const blob3Y = mouseY * 50 - scrollY * 0.09;
-
-  // Grid shifts slightly on scroll for depth
-  const gridY = scrollY * 0.04;
+  useEffect(() => {
+    let rafId: number | null = null;
+    const update = () => {
+      rafId = null;
+      const maxScroll = Math.max(document.body.scrollHeight - window.innerHeight, 1);
+      const t = Math.min(1, Math.max(0, scrollY / maxScroll));
+      const tMid    = Math.min(1, t * 2);
+      const tBottom = Math.max(0, t * 2 - 1);
+      const bgColor = t < 0.5
+        ? lerpColor(COLORS.bgTop, COLORS.bgMid, tMid)
+        : lerpColor(COLORS.bgMid, COLORS.bgBottom, tBottom);
+      if (bgRef.current)    bgRef.current.style.background    = bgColor;
+      if (blob1Ref.current) { blob1Ref.current.style.transform = `translate(${mouseX*120}px,${mouseY*100-scrollY*0.12}px)`; blob1Ref.current.style.background = lerpColor(COLORS.blob1Top, COLORS.blob1Bottom, t); }
+      if (blob2Ref.current) { blob2Ref.current.style.transform = `translate(${-mouseX*100}px,${-mouseY*80-scrollY*0.06}px)`; blob2Ref.current.style.background = lerpColor(COLORS.blob2Top, COLORS.blob2Bottom, t); }
+      if (blob3Ref.current) { blob3Ref.current.style.transform = `translate(${mouseX*60}px,${mouseY*50-scrollY*0.09}px)`; blob3Ref.current.style.background = lerpColor(COLORS.blob3Top, COLORS.blob3Bottom, t); }
+      if (gridRef.current)  gridRef.current.style.transform   = `translateY(${scrollY*0.04}px)`;
+    };
+    const schedule = () => { if (rafId) return; rafId = requestAnimationFrame(update); };
+    schedule();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("mousemove", schedule, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("mousemove", schedule);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [scrollY, mouseX, mouseY]);
 
   return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
-    >
-      {/* Radial gradient wash */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(circle at 20% 20%, rgba(59,130,246,0.18), transparent 45%)," +
-            "radial-gradient(circle at 80% 70%, rgba(139,92,246,0.18), transparent 45%)," +
-            "linear-gradient(135deg, rgba(7,15,31,0.86), rgba(9,9,11,0.94) 56%, rgba(28,18,53,0.8))",
-        }}
-      />
-
-      {/* Faint grid — shifts on scroll */}
-      <div
-        className="absolute inset-0 opacity-50"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px)," +
-            "linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-          transform: `translateY(${gridY}px)`,
-          maskImage:
-            "radial-gradient(ellipse 100% 100% at 50% 0%, #000 30%, transparent 100%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 100% 100% at 50% 0%, #000 30%, transparent 100%)",
-        }}
-      />
-
-      <div className="absolute inset-0">
-        {AMBIENT_PARTICLES.map((particle, index) => {
-          const x = mouseX * 28 * particle.depth;
-          const y = mouseY * 20 * particle.depth - scrollY * 0.018 * particle.depth;
-
-          return (
-            <span
-              key={index}
-              className="absolute rounded-full"
-              style={{
-                left: `${particle.left}%`,
-                top: `${particle.top}%`,
-                width: particle.size,
-                height: particle.size,
-                backgroundColor: particle.color,
-                boxShadow: `0 0 ${particle.size * 4}px ${particle.color}`,
-                opacity: 0.42,
-                transform: `translate3d(${x}px, ${y}px, 0)`,
-                transition: "transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)",
-              }}
-            />
-          );
-        })}
-      </div>
-
-      {/* Blob 1 — blue, top-left */}
-      <div
-        className="absolute -left-32 -top-32 h-[500px] w-[500px] animate-blob1 rounded-full bg-accent opacity-25 blur-[120px]"
-        style={{
-          willChange: "transform",
-          transform: `translate(${blob1X}px, ${blob1Y}px)`,
-          transition: "transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)",
-        }}
-      />
-
-      {/* Blob 2 — purple, bottom-right */}
-      <div
-        className="absolute -right-24 bottom-[-15%] h-[450px] w-[450px] animate-blob2 rounded-full bg-accent-secondary opacity-25 blur-[120px]"
-        style={{
-          willChange: "transform",
-          transform: `translate(${blob2X}px, ${blob2Y}px)`,
-          transition: "transform 1.1s cubic-bezier(0.16, 1, 0.3, 1)",
-        }}
-      />
-
-      {/* Blob 3 — green, center */}
-      <div
-        className="absolute left-[50%] top-[40%] h-[320px] w-[320px] animate-blob1 rounded-full bg-success opacity-08 blur-[130px] [animation-direction:reverse]"
-        style={{
-          willChange: "transform",
-          transform: `translate(${blob3X}px, ${blob3Y}px)`,
-          transition: "transform 1.3s cubic-bezier(0.16, 1, 0.3, 1)",
-          opacity: 0.08,
-        }}
-      />
+    <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      <div ref={bgRef} className="absolute inset-0" style={{ background: "rgb(9,9,11)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle at 20% 20%,rgba(59,130,246,0.14),transparent 45%),radial-gradient(circle at 80% 70%,rgba(139,92,246,0.14),transparent 45%)" }} />
+      <div ref={gridRef} className="absolute inset-0 opacity-40" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px)", backgroundSize: "48px 48px", maskImage: "radial-gradient(ellipse 100% 100% at 50% 0%,#000 30%,transparent 100%)", WebkitMaskImage: "radial-gradient(ellipse 100% 100% at 50% 0%,#000 30%,transparent 100%)" }} />
+      <div ref={blob1Ref} className="absolute -left-32 -top-32 h-[500px] w-[500px] animate-blob1 rounded-full opacity-25 blur-[120px]" style={{ willChange:"transform,background", background:"rgb(59,130,246)" }} />
+      <div ref={blob2Ref} className="absolute -right-24 bottom-[-15%] h-[450px] w-[450px] animate-blob2 rounded-full opacity-25 blur-[120px]" style={{ willChange:"transform,background", background:"rgb(139,92,246)" }} />
+      <div ref={blob3Ref} className="absolute left-[50%] top-[40%] h-[320px] w-[320px] animate-blob1 rounded-full blur-[130px] [animation-direction:reverse]" style={{ willChange:"transform,background", background:"rgb(16,185,129)", opacity:0.1 }} />
     </div>
   );
 }
