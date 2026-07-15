@@ -40,16 +40,16 @@ export function AnimatedBackground() {
   const { scrollY, mouseX, mouseY } = useParallax();
 
   // Blob 1 — blue, top-left, follows cursor
-  const blob1X = mouseX * 40;
-  const blob1Y = mouseY * 30 - scrollY * 0.12;
+  const blob1X = mouseX * 120;
+  const blob1Y = mouseY * 100 - scrollY * 0.12;
 
   // Blob 2 — purple, bottom-right, moves away from cursor
-  const blob2X = -mouseX * 35;
-  const blob2Y = -mouseY * 25 - scrollY * 0.06;
+  const blob2X = -mouseX * 100;
+  const blob2Y = -mouseY * 80 - scrollY * 0.06;
 
   // Blob 3 — green, center-right, subtle drift
-  const blob3X = mouseX * 20;
-  const blob3Y = mouseY * 15 - scrollY * 0.09;
+  const blob3X = mouseX * 60;
+  const blob3Y = mouseY * 50 - scrollY * 0.09;
 
   // Grid shifts slightly on scroll for depth
   const gridY = scrollY * 0.04;
