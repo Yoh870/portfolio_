@@ -1,6 +1,17 @@
 import type { ProjectSummary } from "@/types";
 
 export const PROJECTS: ProjectSummary[] = [
+
+  {
+  id: "doc-pirma",
+  name: "Doc Pirma",
+  description:
+    "AI-powered doctor signature identifier for CIMC using Gemini vision analysis with 100% accuracy matching.",
+  techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "Supabase", "Google Gemini AI"],
+  icon: "image",
+  githubUrl: "https://github.com/Yoh870/doc-pirma",
+  demoUrl: "https://doc-pirma.vercel.app",
+  },
   {
     id: "drawpro-by-amari",
     name: "DrawPro by Amari",
