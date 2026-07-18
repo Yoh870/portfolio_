@@ -51,9 +51,18 @@ export function ProjectCard({ project }: ProjectCardProps) {
         {/* Thumbnail */}
         <div
           aria-hidden="true"
-          className={`flex h-[148px] items-center justify-center border-b border-border bg-gradient-to-br ${thumbGrad}`}
+          className={`flex h-[148px] items-center justify-center border-b border-border bg-gradient-to-br ${thumbGrad}
+            transition-all duration-300 hover:shadow-inner`}
         >
-          <Icon size={36} className="text-white/20" />
+          <Icon 
+            size={36} 
+            className="text-white/20 transition-all duration-300 ease-out
+              hover:text-white/40 hover:scale-110 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.3)]
+              group-hover:animate-pulse"
+            style={{
+              animation: "iconFloat 3s ease-in-out infinite",
+            }}
+          />
         </div>
 
         {/* Body */}
