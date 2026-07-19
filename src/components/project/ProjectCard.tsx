@@ -1,45 +1,28 @@
 "use client";
 
-import {
-  PenTool, Headphones, Image as ImageIcon, Heart,
-  Gift, FileText, Radio, Github, ArrowUpRight,
-  type LucideIcon,
-} from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { ProjectTilt } from "@/components/project/ProjectTilt";
+import { Github, ArrowUpRight } from "lucide-react";
 import type { ProjectSummary } from "@/types";
-
-const ICON_MAP: Record<ProjectSummary["icon"], LucideIcon> = {
-  draw: PenTool, music: Headphones, image: ImageIcon,
-  heart: Heart, gift: Gift, pages: FileText, stream: Radio,
-};
 
 interface ProjectCardProps {
   project: ProjectSummary;
 }
 
-/**
- * POLISH:
- * - Thumbnail gradient is unique per card using the icon's implied
- *   color mood (warm for heart/gift, cool for code/stream) — done
- *   via a per-card accent map so cards don't all look identical.
- * - External links get rel="noopener noreferrer".
- * - Card title truncated with line-clamp-1 so cards never break grid
- *   height if a project name is long.
- */
-const THUMB_STYLES: Record<ProjectSummary["icon"], string> = {
-  draw:   "from-violet-500/20 to-purple-500/20",
-  music:  "from-pink-500/20   to-rose-500/20",
-  image:  "from-sky-500/20    to-cyan-500/20",
-  heart:  "from-rose-500/20   to-orange-500/20",
-  gift:   "from-amber-500/20  to-yellow-500/20",
-  pages:  "from-accent/20     to-accent-secondary/20",
-  stream: "from-teal-500/20   to-emerald-500/20",
+const THUMB_STYLES: Record<string, string> = {
+  "docpirma.png": "from-sky-500/20 to-cyan-500/20",
+  "raffledraw.png": "from-violet-500/20 to-purple-500/20",
+  "dubstep.png": "from-pink-500/20 to-rose-500/20",
+  "loveportrait.png": "from-sky-500/20 to-cyan-500/20",
+  "valed_reviewer.png": "from-rose-500/20 to-orange-500/20",
+  "personal_valentines.png": "from-amber-500/20 to-yellow-500/20",
+  "paging.png": "from-accent/20 to-accent-secondary/20",
+  "flixora.png": "from-teal-500/20 to-emerald-500/20",
+  "cimcid.png": "from-blue-500/20 to-indigo-500/20",
 };
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const Icon = ICON_MAP[project.icon];
-  const thumbGrad = THUMB_STYLES[project.icon];
+  const thumbGrad = THUMB_STYLES[project.icon] || "from-gray-500/20 to-slate-500/20";
 
   return (
     <ProjectTilt className="h-full">
@@ -48,17 +31,17 @@ export function ProjectCard({ project }: ProjectCardProps) {
           transition-[border-color,box-shadow] duration-300
           hover:border-white/[0.15] hover:shadow-[0_24px_48px_-20px_rgba(0,0,0,0.6)]"
       >
-        {/* Thumbnail */}
+        {/* Thumbnail with Image Icon */}
         <div
           aria-hidden="true"
           className={`flex h-[148px] items-center justify-center border-b border-border bg-gradient-to-br ${thumbGrad}
             transition-all duration-300 hover:shadow-inner`}
         >
-          <Icon 
-            size={36} 
-            className="text-white/20 transition-all duration-300 ease-out
-              hover:text-white/40 hover:scale-110 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.3)]
-              group-hover:animate-pulse"
+          <img
+            src={`/icons/${project.icon}`}
+            alt={project.name}
+            className="h-20 w-20 object-contain transition-all duration-300 ease-out
+              hover:scale-110 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.3)]"
             style={{
               animation: "iconFloat 3s ease-in-out infinite",
             }}
@@ -76,12 +59,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
           <ul className="mb-5 flex flex-wrap gap-1.5" aria-label={`${project.name} tech stack`}>
             {project.techStack.map((t) => (
-              <li key={t}><Badge>{t}</Badge></li>
+              <li key={t}>
+                <Badge>{t}</Badge>
+              </li>
             ))}
           </ul>
 
           <div className="flex gap-2.5">
-            <a
+            
               href={project.githubUrl ?? "#"}
               target="_blank"
               rel="noopener noreferrer"
@@ -91,7 +76,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               <Github size={13} aria-hidden="true" />
               Code
             </a>
-            <a
+            
               href={project.demoUrl ?? "#"}
               target="_blank"
               rel="noopener noreferrer"

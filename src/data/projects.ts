@@ -1,16 +1,15 @@
 import type { ProjectSummary } from "@/types";
 
 export const PROJECTS: ProjectSummary[] = [
-
   {
-  id: "doc-pirma",
-  name: "Doc Pirma",
-  description:
-    "AI-powered doctor signature identifier for CIMC using Gemini vision analysis with 100% accuracy matching.",
-  techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "Supabase", "Google Gemini AI"],
-  icon: "image",
-  githubUrl: "https://github.com/Yoh870/doc-pirma",
-  demoUrl: "https://doc-pirma.vercel.app",
+    id: "doc-pirma",
+    name: "Doc Pirma",
+    description:
+      "AI-powered doctor signature identifier for CIMC using Gemini vision analysis with 100% accuracy matching.",
+    techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "Supabase", "Google Gemini AI"],
+    icon: "docpirma.png",
+    githubUrl: "https://github.com/Yoh870/doc-pirma",
+    demoUrl: "https://doc-pirma.vercel.app",
   },
   {
     id: "drawpro-by-amari",
@@ -18,7 +17,7 @@ export const PROJECTS: ProjectSummary[] = [
     description:
       "A creative drawing application focused on a smooth, distraction-free canvas experience.",
     techStack: ["JavaScript", "Canvas API", "CSS"],
-    icon: "draw",
+    icon: "raffledraw.png",
     githubUrl: "https://github.com/Yoh870/DrawPro-by-amari",
     demoUrl: "https://yoh870.github.io/DrawPro-by-amari/",
   },
@@ -28,7 +27,7 @@ export const PROJECTS: ProjectSummary[] = [
     description:
       "An interactive web-based DJ deck for mixing and triggering sounds in the browser.",
     techStack: ["JavaScript", "Web Audio API"],
-    icon: "music",
+    icon: "dubstep.png",
     githubUrl: "https://github.com/Yoh870/DUBSTEP_DJ",
     demoUrl: "https://yoh870.github.io/DUBSTEP_DJ/",
   },
@@ -38,7 +37,7 @@ export const PROJECTS: ProjectSummary[] = [
     description:
       "A personalized digital portrait generator built as a creative gift project.",
     techStack: ["HTML", "CSS", "JavaScript"],
-    icon: "image",
+    icon: "loveportrait.png",
     githubUrl: "https://github.com/Yoh870/love-portrait",
     demoUrl: "https://yoh870.github.io/love-portrait/",
   },
@@ -48,7 +47,7 @@ export const PROJECTS: ProjectSummary[] = [
     description:
       "A personal all-in-one planning and organization app, built para kay misis.",
     techStack: ["HTML", "CSS", "JavaScript"],
-    icon: "heart",
+    icon: "valed_reviewer.png",
     githubUrl: "https://github.com/Yoh870/ValEd_all_in_one_para_kay_misis",
     demoUrl: "https://yoh870.github.io/ValEd_all_in_one_para_kay_misis/",
   },
@@ -58,7 +57,7 @@ export const PROJECTS: ProjectSummary[] = [
     description:
       "An interactive Valentine's themed web experience with playful animations.",
     techStack: ["HTML", "CSS", "JavaScript"],
-    icon: "gift",
+    icon: "personal_valentines.png",
     githubUrl: "https://github.com/Yoh870/Velentines_4u_myLove",
     demoUrl: "https://yoh870.github.io/Velentines_4u_myLove/",
   },
@@ -68,7 +67,7 @@ export const PROJECTS: ProjectSummary[] = [
     description:
       "A lightweight pagination and content-paging utility for browsing structured data.",
     techStack: ["JavaScript", "PHP"],
-    icon: "pages",
+    icon: "paging.png",
     githubUrl: "https://github.com/Yoh870/paging_work",
     demoUrl: "https://yoh870.github.io/paging_work/",
   },
@@ -78,7 +77,7 @@ export const PROJECTS: ProjectSummary[] = [
     description:
       "A personal streaming PWA for watching and organizing content — installable on any device.",
     techStack: ["JavaScript", "HTML", "CSS", "PWA"],
-    icon: "stream",
+    icon: "flixora.png",
     githubUrl: "https://github.com/Yoh870/let-s_stream_yoh.mjg",
     demoUrl: "https://yoh870.github.io/let-s_stream_yoh.mjg/",
   },
@@ -88,7 +87,7 @@ export const PROJECTS: ProjectSummary[] = [
     description:
       "An HTML-based ID card generator for the City of Ilagan Medical Center with print layout and QR code support.",
     techStack: ["HTML", "CSS", "JavaScript"],
-    icon: "pages",
+    icon: "cimcid.png",
     githubUrl: "https://github.com/Yoh870/id_cimc",
     demoUrl: "https://yoh870.github.io/id_cimc/",
   },
