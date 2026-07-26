@@ -91,4 +91,21 @@ export const PROJECTS: ProjectSummary[] = [
     githubUrl: "https://github.com/Yoh870/id_cimc",
     demoUrl: "https://yoh870.github.io/id_cimc/",
   },
+  {
+    id: "dubstep-dj",
+    title: "🎵 Dubstep Music App",
+    description: "Interactive music player with real-time audio visualizer. Features 3 visualizer modes (bars, waveform, particles), MP3 upload, playlist management, and Web Audio API integration.",
+    technologies: ["Next.js 14", "TypeScript", "Tailwind CSS", "Web Audio API", "Canvas 2D", "Supabase"],
+    image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=300&fit=crop",
+    demoUrl: "https://dubstep-app-yoh870.vercel.app",
+    githubUrl: "https://github.com/Yoh870/dubstep_app",
+    features: [
+      "Music player with play/pause/next/prev controls",
+      "3 visualizer modes (bars, waveform, particles)",
+      "Upload MP3 files to Supabase",
+      "Playlist management",
+      "Real-time audio visualization with Canvas 2D",
+      "Volume control and progress tracking"
+    ]
+  }
 ];
