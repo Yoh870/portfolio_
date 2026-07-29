@@ -1,25 +1,20 @@
 import type { ProjectSummary } from "@/types";
 
+/**
+ * Secondary project list rendered as cards in the "Other Projects"
+ * section. Each entry is the single source of truth for its card —
+ * adding project #8 later is one object, not a JSX edit.
+ */
 export const PROJECTS: ProjectSummary[] = [
-  {
-    id: "doc-pirma",
-    name: "Doc Pirma",
-    description:
-      "AI-powered doctor signature identifier for CIMC using Gemini vision analysis with 100% accuracy matching.",
-    techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "Supabase", "Google Gemini AI"],
-    icon: "docpirma.png",
-    githubUrl: "https://github.com/Yoh870/doc-pirma",
-    demoUrl: "https://doc-pirma.vercel.app",
-  },
   {
     id: "drawpro-by-amari",
     name: "DrawPro by Amari",
     description:
       "A creative drawing application focused on a smooth, distraction-free canvas experience.",
     techStack: ["JavaScript", "Canvas API", "CSS"],
-    icon: "raffledraw.png",
-    githubUrl: "https://github.com/Yoh870/DrawPro-by-amari",
-    demoUrl: "https://yoh870.github.io/DrawPro-by-amari/",
+    icon: "draw",
+    githubUrl: "https://github.com/Yoh870",
+    demoUrl: "#",
   },
   {
     id: "dubstep-dj",
@@ -27,9 +22,19 @@ export const PROJECTS: ProjectSummary[] = [
     description:
       "An interactive web-based DJ deck for mixing and triggering sounds in the browser.",
     techStack: ["JavaScript", "Web Audio API"],
-    icon: "dubstep.png",
-    githubUrl: "https://github.com/Yoh870/DUBSTEP_DJ",
-    demoUrl: "https://yoh870.github.io/DUBSTEP_DJ/",
+    icon: "music",
+    githubUrl: "https://github.com/Yoh870",
+    demoUrl: "#",
+  },
+  {
+    id: "dubstep-app",
+    name: "Dubstep App",
+    description:
+      "A dubstep music app with real-time audio visualization using the Web Audio API and Canvas 2D.",
+    techStack: ["Next.js", "TypeScript", "Web Audio API", "Canvas 2D"],
+    icon: "music",
+    githubUrl: "https://github.com/Yoh870/dubstep_app",
+    demoUrl: "https://dubstep-app.vercel.app/",
   },
   {
     id: "love-portrait",
@@ -37,19 +42,19 @@ export const PROJECTS: ProjectSummary[] = [
     description:
       "A personalized digital portrait generator built as a creative gift project.",
     techStack: ["HTML", "CSS", "JavaScript"],
-    icon: "loveportrait.png",
-    githubUrl: "https://github.com/Yoh870/love-portrait",
-    demoUrl: "https://yoh870.github.io/love-portrait/",
+    icon: "image",
+    githubUrl: "https://github.com/Yoh870",
+    demoUrl: "#",
   },
   {
     id: "valed-all-in-one",
     name: "ValEd — All-in-One",
     description:
       "A personal all-in-one planning and organization app, built para kay misis.",
-    techStack: ["HTML", "CSS", "JavaScript"],
-    icon: "valed_reviewer.png",
-    githubUrl: "https://github.com/Yoh870/ValEd_all_in_one_para_kay_misis",
-    demoUrl: "https://yoh870.github.io/ValEd_all_in_one_para_kay_misis/",
+    techStack: ["PHP", "MySQL", "Tailwind CSS"],
+    icon: "heart",
+    githubUrl: "https://github.com/Yoh870",
+    demoUrl: "#",
   },
   {
     id: "valentines-4u-mylove",
@@ -57,9 +62,9 @@ export const PROJECTS: ProjectSummary[] = [
     description:
       "An interactive Valentine's themed web experience with playful animations.",
     techStack: ["HTML", "CSS", "JavaScript"],
-    icon: "personal_valentines.png",
-    githubUrl: "https://github.com/Yoh870/Velentines_4u_myLove",
-    demoUrl: "https://yoh870.github.io/Velentines_4u_myLove/",
+    icon: "gift",
+    githubUrl: "https://github.com/Yoh870",
+    demoUrl: "#",
   },
   {
     id: "paging-work",
@@ -67,45 +72,18 @@ export const PROJECTS: ProjectSummary[] = [
     description:
       "A lightweight pagination and content-paging utility for browsing structured data.",
     techStack: ["JavaScript", "PHP"],
-    icon: "paging.png",
-    githubUrl: "https://github.com/Yoh870/paging_work",
-    demoUrl: "https://yoh870.github.io/paging_work/",
+    icon: "pages",
+    githubUrl: "https://github.com/Yoh870",
+    demoUrl: "#",
   },
   {
     id: "lets-stream-yoh",
     name: "Let's Stream, Yoh",
     description:
-      "A personal streaming PWA for watching and organizing content — installable on any device.",
-    techStack: ["JavaScript", "HTML", "CSS", "PWA"],
-    icon: "flixora.png",
-    githubUrl: "https://github.com/Yoh870/let-s_stream_yoh.mjg",
-    demoUrl: "https://yoh870.github.io/let-s_stream_yoh.mjg/",
+      "A personal streaming/media companion project for organizing and presenting content.",
+    techStack: ["JavaScript", "HTML", "CSS"],
+    icon: "stream",
+    githubUrl: "https://github.com/Yoh870",
+    demoUrl: "#",
   },
-  {
-    id: "id-cimc",
-    name: "CIMC ID Generator",
-    description:
-      "An HTML-based ID card generator for the City of Ilagan Medical Center with print layout and QR code support.",
-    techStack: ["HTML", "CSS", "JavaScript"],
-    icon: "cimcid.png",
-    githubUrl: "https://github.com/Yoh870/id_cimc",
-    demoUrl: "https://yoh870.github.io/id_cimc/",
-  },
-  {
-    id: "dubstep-dj",
-    title: "🎵 Dubstep Music App",
-    description: "Interactive music player with real-time audio visualizer. Features 3 visualizer modes (bars, waveform, particles), MP3 upload, playlist management, and Web Audio API integration.",
-    technologies: ["Next.js 14", "TypeScript", "Tailwind CSS", "Web Audio API", "Canvas 2D", "Supabase"],
-    image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=300&fit=crop",
-    demoUrl: "https://dubstep-app-yoh870.vercel.app",
-    githubUrl: "https://github.com/Yoh870/dubstep_app",
-    features: [
-      "Music player with play/pause/next/prev controls",
-      "3 visualizer modes (bars, waveform, particles)",
-      "Upload MP3 files to Supabase",
-      "Playlist management",
-      "Real-time audio visualization with Canvas 2D",
-      "Volume control and progress tracking"
-    ]
-  }
 ];
