@@ -38,7 +38,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <img
           src={`/icons/${project.icon}`}
           alt={project.name}
-          className="h-62 w-62 object-contain transition-all duration-300 ease-out
+          className="h-full w-full object-contain transition-all duration-300 ease-out
             hover:scale-110 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.3)]"
           style={{
             animation: "iconFloat 3s ease-in-out infinite",
