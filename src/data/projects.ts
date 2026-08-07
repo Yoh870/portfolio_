@@ -106,4 +106,14 @@ export const PROJECTS: ProjectSummary[] = [
     githubUrl: "https://github.com/Yoh870/id_cimc",
     demoUrl: "https://yoh870.github.io/id_cimc/",
   },
+  {
+    id: "yoh-assistant",
+    name: "Yoh Assistant",
+    description:
+      "A custom-built, voice-controlled PC automation system for Android — turn on your PC, launch apps and games, or shut down, all by voice.",
+    techStack: ["Kotlin", "Jetpack Compose", "Python", "Flask", "Wake-on-LAN"],
+    icon: "yohassistant.png",
+    githubUrl: "https://github.com/Yoh870/Yoh-Assistant",
+    demoUrl: "https://github.com/Yoh870/Yoh-Assistant",
+  },
 ];
