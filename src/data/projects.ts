@@ -1,11 +1,26 @@
 import type { ProjectSummary } from "@/types";
 
-/**
- * Secondary project list rendered as cards in the "Other Projects"
- * section. Each entry is the single source of truth for its card —
- * adding project #8 later is one object, not a JSX edit.
- */
 export const PROJECTS: ProjectSummary[] = [
+  {
+    id: "yoh-agent-hub",
+    name: "Yoh Agent Hub",
+    description:
+      "A multi-model AI orchestrator that intelligently routes prompts to the best AI model for the task — Gemini for reasoning, Groq for speed, and a locally-hosted Hermes model (via Ollama) for privacy-sensitive queries. Includes automatic offline fallback and runs persistently in the background via Windows Task Scheduler.",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Gemini API", "Groq API", "Ollama"],
+    icon: "yohagenthub.png",
+    githubUrl: "https://github.com/Yoh870/yoh-agent-hub",
+    demoUrl: "https://github.com/Yoh870/yoh-agent-hub",
+  },
+  {
+    id: "yoh-assistant",
+    name: "Yoh Assistant",
+    description:
+      "A custom-built, voice-controlled PC automation system for Android — turn on your PC, launch apps and games, or shut down, all by voice.",
+    techStack: ["Kotlin", "Jetpack Compose", "Python", "Flask", "Wake-on-LAN"],
+    icon: "yohassistant.png",
+    githubUrl: "https://github.com/Yoh870/Yoh-Assistant",
+    demoUrl: "https://github.com/Yoh870/Yoh-Assistant",
+  },
   {
     id: "doc-pirma",
     name: "Doc Pirma",
@@ -105,25 +120,5 @@ export const PROJECTS: ProjectSummary[] = [
     icon: "cimcid.png",
     githubUrl: "https://github.com/Yoh870/id_cimc",
     demoUrl: "https://yoh870.github.io/id_cimc/",
-  },
-  {
-    id: "yoh-assistant",
-    name: "Yoh Assistant",
-    description:
-      "A custom-built, voice-controlled PC automation system for Android — turn on your PC, launch apps and games, or shut down, all by voice.",
-    techStack: ["Kotlin", "Jetpack Compose", "Python", "Flask", "Wake-on-LAN"],
-    icon: "yohassistant.png",
-    githubUrl: "https://github.com/Yoh870/Yoh-Assistant",
-    demoUrl: "https://github.com/Yoh870/Yoh-Assistant",
-  },
-  {
-    id: "yoh-agent-hub",
-    name: "Yoh Agent Hub",
-    description:
-      "A multi-model AI orchestrator that intelligently routes prompts to the best AI model for the task — Gemini for reasoning, Groq for speed, and a locally-hosted Hermes model (via Ollama) for privacy-sensitive queries. Includes automatic offline fallback and runs persistently in the background via Windows Task Scheduler.",
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Gemini API", "Groq API", "Ollama"],
-    icon: "yohagenthub.png",
-    githubUrl: "https://github.com/Yoh870/yoh-agent-hub",
-    demoUrl: "https://github.com/Yoh870/yoh-agent-hub",
   },
 ];
