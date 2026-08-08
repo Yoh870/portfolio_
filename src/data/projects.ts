@@ -116,4 +116,14 @@ export const PROJECTS: ProjectSummary[] = [
     githubUrl: "https://github.com/Yoh870/Yoh-Assistant",
     demoUrl: "https://github.com/Yoh870/Yoh-Assistant",
   },
+  {
+    id: "yoh-agent-hub",
+    name: "Yoh Agent Hub",
+    description:
+      "A multi-model AI orchestrator that intelligently routes prompts to the best AI model for the task — Gemini for reasoning, Groq for speed, and a locally-hosted Hermes model (via Ollama) for privacy-sensitive queries. Includes automatic offline fallback and runs persistently in the background via Windows Task Scheduler.",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Gemini API", "Groq API", "Ollama"],
+    icon: "yohagenthub.png",
+    githubUrl: "https://github.com/Yoh870/yoh-agent-hub",
+    demoUrl: "https://github.com/Yoh870/yoh-agent-hub",
+  },
 ];
